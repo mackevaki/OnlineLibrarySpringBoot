@@ -1,0 +1,99 @@
+plugins {
+	id 'java'
+	id 'org.joinfaces' version '4.3.0'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
+}
+//apply plugin: 'war'
+
+group = 'library.springboot'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '1.8'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url 'https://repository.primefaces.org' 	// для зависимостей primefaces
+	}
+}
+
+dependencies {
+//	providedRuntime "org.joinfaces:tomcat-spring-boot-starter"
+/*	implementation "org.joinfaces:omnifaces3-spring-boot-starter"
+
+
+	implementation "org.joinfaces:security-spring-boot-starter"*/
+/*	implementation 'org.joinfaces:jsf-spring-boot-starter'
+	implementation 'org.joinfaces:primefaces-spring-boot-starter'
+//	implementation 'org.joinfaces:bootsfaces-spring-boot-starter'
+	implementation 'org.joinfaces:bootsfaces-spring-boot-starter:4.7.14'
+//	implementation 'org.joinfaces:jsf-bootsfaces-spring-boot-autoconfigure:2.1.1'
+
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+*//*	implementation 'javax.el:javax.el-api:3.0.0'
+	implementation 'javax.servlet:javax.servlet-api:3.0.1'*//*
+//	implementation 'org.joinfaces:mojarra-spring-boot-starter'
+ //'org.joinfaces:mojarra4-spring-boot-starter'
+//
+//	exclude'org.joinfaces:mojarra3-spring-boot-starter'
+//}
+		modules {
+			module("org.joinfaces:mojarra3-spring-boot-starter") {
+				replacedBy("org.joinfaces:mojarra4-spring-boot-starter", "Use Mojara4 instead of Mojarra3")
+			}
+		}
+
+	implementation('org.primefaces.themes:bootstrap:1.0.10')
+
+	compileOnly 'org.projectlombok:lombok:1.18.28'
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'commons-io:commons-io:2.11.0'// для загрузки файлов в приложении
+	implementation 'commons-fileupload:commons-fileupload:1.5'*/
+//	providedRuntime "org.joinfaces:tomcat-spring-boot-starter"
+	implementation "org.joinfaces:omnifaces3-spring-boot-starter"
+	implementation "org.joinfaces:bootsfaces-spring-boot-starter"
+	implementation "org.joinfaces:primefaces-spring-boot-starter"
+	implementation "org.joinfaces:mojarra-spring-boot-starter"
+	implementation "org.joinfaces:security-spring-boot-starter"
+
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // работа с БД и Hibernate
+	implementation("org.springframework.boot:spring-boot-starter-security") // авторизация, аутентификация
+	implementation("org.springframework.boot:spring-boot-starter-aop") // для использования аспектов (отлавливание ошибок, действий пользователя - для отображения сообщений)
+	implementation("org.springframework.boot:spring-boot-starter-actuator")// служебные данные во время работы приложения (бины, endpoints и пр.)
+	implementation("org.springframework.boot:spring-boot-starter-web")// контроллеры для обработки веб запросов (всех, кроме страниц xhtml)
+
+	implementation 'com.google.guava:guava:25.1-jre'// утилиты по разным направлениям Java
+
+	// для сокращения написания кода
+	// https://projectlombok.org/
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	// в настройках IDEA: File->Settings нужно включить галочку "Enable annotation processing"
+
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33' // драйвер MySQL
+
+	implementation 'commons-io:commons-io:2.7'// для загрузки файлов в приложении
+	implementation 'commons-fileupload:commons-fileupload:1.4'
+
+	implementation('org.primefaces.themes:bootstrap:1.0.10')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
